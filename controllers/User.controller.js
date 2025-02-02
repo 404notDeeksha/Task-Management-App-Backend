@@ -35,7 +35,6 @@ const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Check if user already exists
     let user = await User.findOne({ email });
     if (!user)
       return res
