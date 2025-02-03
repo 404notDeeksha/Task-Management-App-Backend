@@ -5,7 +5,6 @@ const createTask = async (req, res) => {
   try {
     const task = new Task(req.body);
     const newTask = await task.save();
-    console.log("Created Task", newTask);
     res.status(201).json({ success: true, data: newTask });
   } catch (err) {
     res.status(400).json({ success: false, message: err.message });

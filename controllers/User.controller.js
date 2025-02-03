@@ -47,9 +47,8 @@ const loginUser = async (req, res) => {
         .status(400)
         .json({ success: false, error: "Invalid credentials" });
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
-      expiresIn: "1h",
-    });
+    const token = generateToken(user);
+    console.log("Generated Token", token);
 
     res.status(201).json({
       success: true,
@@ -63,3 +62,9 @@ const loginUser = async (req, res) => {
 };
 
 module.exports = { signupUser, loginUser };
+
+const generateToken = (user) => {
+  return jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
+    expiresIn: "1h",
+  });
+};
