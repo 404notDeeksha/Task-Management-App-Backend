@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const moment = require("moment");
 const { Schema } = mongoose;
 const taskSchema = new mongoose.Schema(
   {
@@ -20,10 +21,14 @@ const taskSchema = new mongoose.Schema(
     dueDate: {
       type: Date,
     },
+
     // assignedUser: {
     //   type: String,
     //   required: true,
     // },
+    formattedDueDate: {
+      type: String,
+    },
     priority: {
       type: String,
       enum: ["Low", "Medium", "High"],
@@ -34,5 +39,15 @@ const taskSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+taskSchema.pre("save", function (next) {
+  if (this.dueDate) {
+    this.formattedDueDate = moment(this.dueDate).format("DD-MM-YY"); // Convert and store in "dd-mm-yy" format
+  }
+  next();
+});
+
+taskSchema.set("toJSON", { virtuals: true });
+taskSchema.set("toObject", { virtuals: true });
 
 module.exports = mongoose.model("Task", taskSchema);

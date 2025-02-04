@@ -4,6 +4,7 @@ const Task = require("../models/Task.model");
 const createTask = async (req, res) => {
   try {
     const task = new Task(req.body);
+    console.log("Task", task);
 
     const newTask = await task.save();
     res.status(201).json({ success: true, data: newTask });
