@@ -4,6 +4,7 @@ const Task = require("../models/Task.model");
 const createTask = async (req, res) => {
   try {
     const task = new Task(req.body);
+
     const newTask = await task.save();
     res.status(201).json({ success: true, data: newTask });
   } catch (err) {
@@ -35,7 +36,6 @@ const getTask = async (req, res) => {
   }
 };
 
-// ERROR MAY OCCUR
 // Update a task // PUT/api/tasks/:id
 const updateTask = async (req, res) => {
   try {
@@ -56,6 +56,7 @@ const updateTask = async (req, res) => {
 const deleteTask = async (req, res) => {
   try {
     const task = await Task.findByIdAndDelete(req.params.id);
+    console.log("Task", task);
     if (!task)
       return res
         .status(404)
