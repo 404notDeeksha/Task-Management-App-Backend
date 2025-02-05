@@ -32,10 +32,13 @@ const signupUser = async (req, res) => {
 
 // POST/api/auth/login
 const loginUser = async (req, res) => {
+  console.log("Login");
   try {
     const { email, password } = req.body;
-
+    console.log("login user data", email, password);
     let user = await User.findOne({ email });
+    console.log("login User foound", user);
+
     if (!user)
       return res
         .status(400)
@@ -68,13 +71,17 @@ const loginUser = async (req, res) => {
 
 // POST/api/auth/logout
 const logoutUser = (req, res) => {
-  res.clearCookie("token", {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "Strict",
-  });
+  try {
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Strict",
+    });
 
-  res.status(200).json({ success: true, message: "Logged out successfully" });
+    res.status(200).json({ success: true, message: "Logged out successfully" });
+  } catch (err) {
+    console.log("Cookie cant be deleted", err);
+  }
 };
 
 module.exports = { signupUser, loginUser, logoutUser };
