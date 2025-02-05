@@ -49,10 +49,16 @@ const loginUser = async (req, res) => {
 
     const token = generateToken(user);
 
+    res.cookie("token", token, {
+      httpOnly: true, // Prevents access via JavaScript
+      secure: process.env.NODE_ENV === "production", // Ensures it's only sent over HTTPS in production
+      sameSite: "Strict", // Prevents CSRF attacks
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days expiration
+    });
+
     res.status(201).json({
       success: true,
       message: "Login successful",
-      token,
       user: { id: user._id, name: user.name, email: user.email },
     });
   } catch (error) {
@@ -60,10 +66,21 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { signupUser, loginUser };
+// POST/api/auth/logout
+const logoutUser = (req, res) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "Strict",
+  });
+
+  res.status(200).json({ success: true, message: "Logged out successfully" });
+};
+
+module.exports = { signupUser, loginUser, logoutUser };
 
 const generateToken = (user) => {
   return jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
-    expiresIn: "1h",
+    expiresIn: "7d",
   });
 };
