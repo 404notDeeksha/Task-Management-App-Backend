@@ -4,6 +4,9 @@ const taskController = require("../controllers/Task.controller");
 
 router.post("/", taskController.createTask);
 router.get("/", taskController.getAllTasks);
+router.get("/:date", taskController.getTasksOfDay);
+router.get("/:priority", taskController.getTasksPriorityWise);
+router.get("/pending-before-today", taskController.getTasksPendingBeforeToday);
 router.get("/:id", taskController.getTask);
 router.put("/:id", taskController.updateTask);
 router.delete("/:id", taskController.deleteTask);

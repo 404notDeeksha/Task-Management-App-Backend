@@ -2,7 +2,7 @@ const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// /api/auth/signup
+// POST /api/auth/signup
 const signupUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -32,32 +32,31 @@ const signupUser = async (req, res) => {
 
 // POST/api/auth/login
 const loginUser = async (req, res) => {
-  // console.log("Login");
   try {
     const { email, password } = req.body;
-    console.log("login user data", email, password);
     let user = await User.findOne({ email });
-
     if (!user)
       return res
         .status(400)
         .json({ success: false, message: "User not exists" });
-    console.log("login match", user);
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch)
       return res
         .status(400)
         .json({ success: false, error: "Invalid credentials" });
+
     const token = generateToken(user);
-    console.log("login User token", token);
+
+    // console.log("Token", token);
+
     res.cookie("token", token, {
       httpOnly: true, // Prevents access via JavaScript
       secure: process.env.NODE_ENV === "production", // Ensures it's only sent over HTTPS in production
       sameSite: "Strict", // Prevents CSRF attacks
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days expiration
     });
-    console.log("login User token", res.cookie);
+
     res.status(201).json({
       success: true,
       message: "Login successful",
@@ -83,10 +82,10 @@ const logoutUser = (req, res) => {
   }
 };
 
-module.exports = { signupUser, loginUser, logoutUser };
-
 const generateToken = (user) => {
   return jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
     expiresIn: "7d",
   });
 };
+
+module.exports = { signupUser, loginUser, logoutUser };

@@ -5,10 +5,6 @@ const taskRouter = require("./task.routes");
 const authMiddleware = require("../middleware/auth");
 
 router.use("/auth", authRouter);
-router.use(
-  "/tasks",
-  authMiddleware,
-  taskRouter
-);
+router.use("/tasks", authMiddleware, taskRouter);
 
 module.exports = router;

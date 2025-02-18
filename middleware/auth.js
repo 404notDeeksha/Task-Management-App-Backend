@@ -2,10 +2,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 const authMiddleware = (req, res, next) => {
-  console.log("authMiddleware", req.cookies);
   const token = req.cookies.token;
-  console.log("authMiddleware", req);
-  // const token = req.header("Authorization")?.split(" ")[1];
   if (!token) {
     return res
       .status(401)
@@ -14,6 +11,7 @@ const authMiddleware = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
     req.user = decoded.userId;
+    console.log("Verified Token");
     next();
   } catch (err) {
     console.log("Error", err);
@@ -23,24 +21,3 @@ const authMiddleware = (req, res, next) => {
   }
 };
 module.exports = authMiddleware;
-
-// module.exports = { authMiddleware };
-// // const jwt = require("jsonwebtoken");
-
-// // const authenticateUser = (req, res, next) => {
-// //   const token = req.cookies.token; // ✅ Read token from HttpOnly Cookie
-
-// //   if (!token) {
-// //     return res.status(401).json({ success: false, message: "Unauthorized" });
-// //   }
-
-// //   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decoded) => {
-// //     if (err) {
-// //       return res
-// //         .status(403)
-// //         .json({ success: false, message: "Invalid or expired token" });
-// //     }
-// //     req.user = decoded.userId; // Attach user ID to request
-// //     next();
-// //   });
-// // };
