@@ -56,7 +56,6 @@ const loginUser = async (req, res) => {
       httpOnly: true, // Prevents client-side access
       secure: true, // Required for SameSite=None (only works on HTTPS)
       sameSite: "None", // Allows cross-site cookies
-      domain: ".vercel.app", // Adjust domain as needed
       path: "/", // Root path
       // sameSite: "Strict", // Prevents CSRF attacks
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days expiration
