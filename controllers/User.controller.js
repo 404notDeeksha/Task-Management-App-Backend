@@ -56,6 +56,8 @@ const loginUser = async (req, res) => {
       httpOnly: true, // Prevents client-side access
       secure: true, // Required for SameSite=None (only works on HTTPS)
       sameSite: "None", // Allows cross-site cookies
+      domain: "task-management-app-backend-techwithdeeksha.vercel.app/", // Adjust domain as needed
+      path: "/", // Root path
       // sameSite: "Strict", // Prevents CSRF attacks
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days expiration
     });
@@ -63,7 +65,7 @@ const loginUser = async (req, res) => {
     res.status(201).json({
       success: true,
       message: "Login successful",
-      user: { id: user._id, name: user.name, email: user.email },
+      user: { id: user._id, name: user.name, email: user.email, token },
     });
   } catch (error) {
     res.status(500).json({ success: false, message: "Server Error" });
