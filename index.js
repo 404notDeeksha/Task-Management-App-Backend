@@ -23,7 +23,7 @@ app.use(
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.get("/health", (req, res) => {
+app.get("/", (req, res) => {
   console.log("GET working fine");
   res.send("GET working fine");
 });

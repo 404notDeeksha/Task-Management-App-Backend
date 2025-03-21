@@ -53,7 +53,8 @@ const loginUser = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true, // Prevents access via JavaScript
       secure: process.env.NODE_ENV === "production", // Ensures it's only sent over HTTPS in production
-      httpOnly: true, // Prevents client-side access
+      httpOnly: true,
+       // Prevents client-side access
       secure: true, // Required for SameSite=None (only works on HTTPS)
       sameSite: "None", // Allows cross-site cookies
       path: "/", // Root path
