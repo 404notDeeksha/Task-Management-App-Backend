@@ -16,6 +16,7 @@ const createTask = async (req, res) => {
 const getAllTasks = async (req, res) => {
   try {
     const tasks = await Task.find();
+    console.log("All Tasks", tasks);
     res.json({ success: true, data: tasks });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
