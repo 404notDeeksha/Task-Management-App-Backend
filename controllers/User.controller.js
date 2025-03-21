@@ -7,18 +7,15 @@ const signupUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    // Check if user already exists
     let user = await User.findOne({ email });
     if (user)
       return res
         .status(400)
         .json({ success: false, message: "User already exists" });
 
-    // Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Save user to database
     user = new User({ name, email, password: hashedPassword });
     await user.save();
 
@@ -48,17 +45,11 @@ const loginUser = async (req, res) => {
 
     const token = generateToken(user);
 
-    // console.log("Token", token);
-
     res.cookie("token", token, {
       httpOnly: true, // Prevents access via JavaScript
       secure: process.env.NODE_ENV === "production", // Ensures it's only sent over HTTPS in production
-      httpOnly: true,
-       // Prevents client-side access
-      secure: true, // Required for SameSite=None (only works on HTTPS)
-      sameSite: "None", // Allows cross-site cookies
-      path: "/", // Root path
-      // sameSite: "Strict", // Prevents CSRF attacks
+      sameSite: "none",
+      path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days expiration
     });
 
