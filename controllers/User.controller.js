@@ -45,13 +45,13 @@ const loginUser = async (req, res) => {
 
     const token = generateToken(user);
 
-    res.cookie("token", token, {
-      httpOnly: true, // Prevents access via JavaScript
-      secure: process.env.NODE_ENV === "production", // Ensures it's only sent over HTTPS in production
-      sameSite: "none",
-      path: "/",
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days expiration
-    });
+    // res.cookie("token", token, {
+    //   httpOnly: true, // Prevents access via JavaScript
+    //   secure: process.env.NODE_ENV === "production", // Ensures it's only sent over HTTPS in production
+    //   sameSite: "none",
+    //   path: "/",
+    //   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days expiration
+    // });
 
     res.status(201).json({
       success: true,
