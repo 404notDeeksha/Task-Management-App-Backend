@@ -43,7 +43,7 @@ const loginUser = async (req, res) => {
         .status(400)
         .json({ success: false, error: "Invalid credentials" });
 
-    const token = generateToken(user);
+    // const token = generateToken(user);
 
     // res.cookie("token", token, {
     //   httpOnly: true, // Prevents access via JavaScript
@@ -56,7 +56,12 @@ const loginUser = async (req, res) => {
     res.status(201).json({
       success: true,
       message: "Login successful",
-      user: { id: user._id, name: user.name, email: user.email, token },
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        // token
+      },
     });
   } catch (error) {
     console.log(error);
@@ -79,10 +84,10 @@ const logoutUser = (req, res) => {
   }
 };
 
-const generateToken = (user) => {
-  return jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
-    expiresIn: "7d",
-  });
-};
+// const generateToken = (user) => {
+//   return jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
+//     expiresIn: "7d",
+//   });
+// };
 
 module.exports = { signupUser, loginUser, logoutUser };
