@@ -29,7 +29,7 @@ app.get("/", (req, res) => {
   res.send("GET working fine");
 });
 app.use(cookieParser());
-app.use("/api", router);
+app.use("/", router);
 
 const port = process.env.PORT || 5001;
 
