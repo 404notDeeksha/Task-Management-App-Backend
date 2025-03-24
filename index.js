@@ -7,6 +7,7 @@ const cors = require("cors");
 const router = require("./routes/index.routes");
 const cookieParser = require("cookie-parser");
 // dbConnection();
+console.log(process.env);
 const mongoose = require("mongoose");
 
 (async () => {
