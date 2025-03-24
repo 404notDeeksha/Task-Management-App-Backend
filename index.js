@@ -14,6 +14,8 @@ app.use(
       "http://localhost:5173", // for local testing
       "http://localhost:4173", // for local build
       process.env.FRONTEND_PORT, //deployed frontend
+      process.env.FRONTEND_PORT1, //deployed frontend
+      process.env.FRONTEND_PORT2, //deployed frontend
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
