@@ -1,4 +1,6 @@
+console.log("Hitting Index.js file");
 const express = require("express");
+var isEmpty = require("lodash.isempty");
 require("dotenv").config();
 const dbConnection = require("./config/dbConnection");
 const cors = require("cors");
@@ -13,9 +15,9 @@ app.use(
     origin: [
       "http://localhost:5173", // for local testing
       "http://localhost:4173", // for local build
-      process.env.FRONTEND_PORT, //deployed frontend
-      process.env.FRONTEND_PORT1, //deployed frontend
-      process.env.FRONTEND_PORT2, //deployed frontend
+      getOrDefault(process.env.FRONTEND_PORT), //deployed frontend
+      getOrDefault(process.env.FRONTEND_PORT1), //deployed frontend
+      getOrDefault(process.env.FRONTEND_PORT2), //deployed frontend
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -38,3 +40,10 @@ const port = process.env.PORT || 5001;
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
+
+function getOrDefault(string) {
+  if (string && isEmpty(string)) {
+    return string;
+  }
+  return "";
+}

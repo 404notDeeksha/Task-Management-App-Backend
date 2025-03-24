@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 const authMiddleware = (req, res, next) => {
+  console.log(`Triggering Auth Middleware`);
   const token = req.headers.authorization?.split(" ")[1]; // Extract token if it exists
 
   if (!token) {
