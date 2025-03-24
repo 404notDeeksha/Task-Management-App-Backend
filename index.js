@@ -23,6 +23,7 @@ const vercelPreviewRegex =
 app.use(
   cors({
     origin: function (origin, callback) {
+      console.log(`Request going throug CORS `, origin);
       if (
         !origin ||
         allowedOrigins.includes(origin) ||
