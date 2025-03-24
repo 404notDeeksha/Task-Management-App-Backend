@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 dbConnection();
 
 const app = express();
-
+app.use(cookieParser());
 app.use(
   cors({
     origin: [
@@ -28,7 +28,11 @@ app.get("/", (req, res) => {
   console.log("GET working fine");
   res.send("GET working fine");
 });
-app.use(cookieParser());
+// app.get("/check-auth", (req, res) => {
+//   console.log(req.cookies); // Should log the token
+//   res.json({ token: req.cookies.token });
+// });
+
 app.use("/", router);
 
 const port = process.env.PORT || 5001;
