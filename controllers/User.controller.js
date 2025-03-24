@@ -23,10 +23,10 @@ const signupUser = async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      // secure: process.env.NODE_ENV === "production",
-      // sameSite: "none",
-      secure: false,
-      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "none",
+      // secure: false,
+      // sameSite: "lax",
       path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
@@ -38,7 +38,6 @@ const signupUser = async (req, res) => {
         userId: user.userId,
         name: user.name,
         email: user.email,
-       
       },
     });
   } catch (error) {
@@ -66,12 +65,12 @@ const loginUser = async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      // secure: process.env.NODE_ENV === "production",
-      // sameSite: "none",
-      secure: false, 
-      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "none",
+      // secure: false,
+      // sameSite: "lax",
       path: "/",
-      maxAge: 7 * 24 * 60 * 60 * 1000, 
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     res.status(201).json({
@@ -80,7 +79,7 @@ const loginUser = async (req, res) => {
       user: {
         userId: user.userId,
         name: user.name,
-        email: user.email,       
+        email: user.email,
       },
     });
   } catch (error) {
