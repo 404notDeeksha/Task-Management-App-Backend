@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
-const moment = require("moment");
+// const moment = require("moment");
 const { Schema } = mongoose;
 const taskSchema = new mongoose.Schema(
   {
     _id: { type: Schema.Types.ObjectId, auto: true },
+    userId: {
+      type: String, // Matching the format in the User model
+      required: true,
+    },
     title: {
       type: String,
       required: true,

@@ -1,10 +1,9 @@
 const Task = require("../models/Task.model");
 
-// POST/api/tasks
+// POST/tasks
 const createTask = async (req, res) => {
   try {
-    const task = new Task(req.body);
-
+    const task = new Task({ ...req.body, userId: req.user });
     const newTask = await task.save();
     res.status(201).json({ success: true, data: newTask });
   } catch (err) {
@@ -12,23 +11,24 @@ const createTask = async (req, res) => {
   }
 };
 
-// GET/api/tasks
+// GET/tasks
 const getAllTasks = async (req, res) => {
   try {
-    const tasks = await Task.find();
-    // console.log("All Tasks", tasks);
+    const tasks = await Task.find({ userId: req.user });
     res.json({ success: true, data: tasks });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
 };
 
-// Update a task // PUT/api/tasks/:id
+// Update a task // PUT/tasks/:id
 const updateTask = async (req, res) => {
   try {
-    const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
+    const task = await Task.findOneAndUpdate(
+      { _id: req.params.id, userId: req.user },
+      req.body,
+      { new: true }
+    );
     if (!task)
       return res
         .status(404)
@@ -39,11 +39,13 @@ const updateTask = async (req, res) => {
   }
 };
 
-// Delete a task // DELETE/api/tasks/:id
+// Delete a task // DELETE/tasks/:id
 const deleteTask = async (req, res) => {
   try {
-    const task = await Task.findByIdAndDelete(req.params.id);
-    // console.log("Task", task);
+    const task = await Task.findOneAndDelete({
+      _id: req.params.id,
+      userId: req.user,
+    });
     if (!task)
       return res
         .status(404)

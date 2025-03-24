@@ -2,7 +2,7 @@ const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// POST /api/auth/signup
+// POST/auth/signup
 const signupUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -19,15 +19,24 @@ const signupUser = async (req, res) => {
     user = new User({ name, email, password: hashedPassword });
     await user.save();
 
-    res
-      .status(201)
-      .json({ success: true, message: "User registered successfully" });
+    const token = generateToken(user);
+
+    res.status(201).json({
+      success: true,
+      message: "User registered successfully",
+      user: {
+        userId: user.userId,
+        name: user.name,
+        email: user.email,
+        token,
+      },
+    });
   } catch (error) {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
 
-// POST/api/auth/login
+// POST/auth/login
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -43,7 +52,7 @@ const loginUser = async (req, res) => {
         .status(400)
         .json({ success: false, error: "Invalid credentials" });
 
-    // const token = generateToken(user);
+    const token = generateToken(user);
 
     // res.cookie("token", token, {
     //   httpOnly: true, // Prevents access via JavaScript
@@ -57,9 +66,10 @@ const loginUser = async (req, res) => {
       success: true,
       message: "Login successful",
       user: {
-        id: user._id,
+        userId: user.userId,
         name: user.name,
         email: user.email,
+        token,
       },
     });
   } catch (error) {
@@ -68,7 +78,7 @@ const loginUser = async (req, res) => {
   }
 };
 
-// POST/api/auth/logout
+// POST/auth/logout
 const logoutUser = (req, res) => {
   try {
     // res.clearCookie("token", {
@@ -83,10 +93,10 @@ const logoutUser = (req, res) => {
   }
 };
 
-// const generateToken = (user) => {
-//   return jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
-//     expiresIn: "7d",
-//   });
-// };
+const generateToken = (user) => {
+  return jwt.sign({ userId: user.userId }, process.env.JWT_SECRET_KEY, {
+    expiresIn: "7d",
+  });
+};
 
 module.exports = { signupUser, loginUser, logoutUser };
