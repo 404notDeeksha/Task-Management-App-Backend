@@ -53,6 +53,7 @@ app.listen(port, () => {
 });
 
 function getOrDefault(string) {
+  console.log("Using path ->", string);
   if (string && isEmpty(string)) {
     return string;
   }
