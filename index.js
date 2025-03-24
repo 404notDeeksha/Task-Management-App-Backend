@@ -1,40 +1,41 @@
-console.log("Hitting Index.js file");
 const express = require("express");
 var isEmpty = require("lodash.isempty");
 require("dotenv").config();
 const dbConnection = require("./config/DbConnection");
-
 const cors = require("cors");
 const router = require("./routes/index.routes");
 const cookieParser = require("cookie-parser");
 dbConnection();
-console.log(process.env);
-const mongoose = require("mongoose");
-
-// (async () => {
-//   console.log("🟡 Trying to connect to MongoDB...");
-//   try {
-//     await mongoose.connect(process.env.MONGODB_URI);
-//     console.log("MongoDB connection successful!");
-//   } catch (err) {
-//     console.log("MongoDB connection failed:", err);
-//   }
-// })();
 
 const app = express();
+const allowedOrigins = [
+  "http://localhost:5173", // Local development
+  "http://localhost:4173", // Local build
+  getOrDefault(process.env.FRONTEND_PORT), // Deployed frontend (main)
+  getOrDefault(process.env.FRONTEND_PORT1), // Additional frontend domain
+  getOrDefault(process.env.FRONTEND_PORT2), // Another additional frontend domain
+].filter(Boolean); // Removes undefined values
+
+// Regex to match Vercel preview URLs (handling the dynamic part)
+const vercelPreviewRegex =
+  /^https:\/\/task-management-app-frontend-.*-deekshasharma-projects\.vercel\.app$/;
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173", // for local testing
-      "http://localhost:4173", // for local build
-      getOrDefault(process.env.FRONTEND_PORT), //deployed frontend
-      getOrDefault(process.env.FRONTEND_PORT1), //deployed frontend
-      getOrDefault(process.env.FRONTEND_PORT2), //deployed frontend
-    ],
+    origin: function (origin, callback) {
+      if (
+        !origin ||
+        allowedOrigins.includes(origin) ||
+        vercelPreviewRegex.test(origin)
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true, // Allow credentials (cookies) to be sent
+    credentials: true, // Allows cookies & authentication headers
   })
 );
 
