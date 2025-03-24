@@ -2,11 +2,22 @@ console.log("Hitting Index.js file");
 const express = require("express");
 var isEmpty = require("lodash.isempty");
 require("dotenv").config();
-const dbConnection = require("./config/dbConnection");
+// require("./config/dbConnection"); // Just require it, no need to call a function
 const cors = require("cors");
 const router = require("./routes/index.routes");
 const cookieParser = require("cookie-parser");
-dbConnection();
+// dbConnection();
+const mongoose = require("mongoose");
+
+(async () => {
+  console.log("🟡 Trying to connect to MongoDB...");
+  try {
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log("MongoDB connection successful!");
+  } catch (err) {
+    console.log("MongoDB connection failed:", err);
+  }
+})();
 
 const app = express();
 
