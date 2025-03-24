@@ -21,16 +21,6 @@ const signupUser = async (req, res) => {
 
     const token = generateToken(user);
 
-    res.cookie("token", token, {
-      httpOnly: true,
-      // secure: process.env.NODE_ENV === "production",
-      // sameSite: "none",
-      secure: false,
-      sameSite: "lax",
-      path: "/",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
-
     res.status(201).json({
       success: true,
       message: "User registered successfully",
@@ -38,7 +28,7 @@ const signupUser = async (req, res) => {
         userId: user.userId,
         name: user.name,
         email: user.email,
-       
+        token,
       },
     });
   } catch (error) {
@@ -64,15 +54,13 @@ const loginUser = async (req, res) => {
 
     const token = generateToken(user);
 
-    res.cookie("token", token, {
-      httpOnly: true,
-      // secure: process.env.NODE_ENV === "production",
-      // sameSite: "none",
-      secure: false, 
-      sameSite: "lax",
-      path: "/",
-      maxAge: 7 * 24 * 60 * 60 * 1000, 
-    });
+    // res.cookie("token", token, {
+    //   httpOnly: true, // Prevents access via JavaScript
+    //   secure: process.env.NODE_ENV === "production", // Ensures it's only sent over HTTPS in production
+    //   sameSite: "none",
+    //   path: "/",
+    //   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days expiration
+    // });
 
     res.status(201).json({
       success: true,
@@ -80,7 +68,8 @@ const loginUser = async (req, res) => {
       user: {
         userId: user.userId,
         name: user.name,
-        email: user.email,       
+        email: user.email,
+        token,
       },
     });
   } catch (error) {
@@ -92,19 +81,15 @@ const loginUser = async (req, res) => {
 // POST/auth/logout
 const logoutUser = (req, res) => {
   try {
-    res.clearCookie("token", {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "none",
-      path: "/",
-    });
+    // res.clearCookie("token", {
+    //   httpOnly: true,
+    //   secure: process.env.NODE_ENV === "production",
+    //   sameSite: "Strict",
+    // });
 
     res.status(200).json({ success: true, message: "Logged out successfully" });
   } catch (err) {
     console.log("Cookie cant be deleted", err);
-    return res
-      .status(500)
-      .json({ success: false, message: "Server error during logout" });
   }
 };
 
