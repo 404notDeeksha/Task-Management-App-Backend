@@ -8,13 +8,6 @@ const cookieParser = require("cookie-parser");
 dbConnection();
 
 const app = express();
-const allowedOrigins = [
-  "http://localhost:5173", // Local development
-  "http://localhost:4173", // Local build
-  getOrDefault(process.env.FRONTEND_PORT), // Deployed frontend (main)
-  getOrDefault(process.env.FRONTEND_PORT1), // Additional frontend domain
-  getOrDefault(process.env.FRONTEND_PORT2), // Another additional frontend domain
-].filter(Boolean); // Removes undefined values
 
 // Regex to match Vercel preview URLs (handling the dynamic part)
 const vercelPreviewRegex =
@@ -23,7 +16,18 @@ const vercelPreviewRegex =
 app.use(
   cors({
     origin: function (origin, callback) {
-      console.log(`Request going throug CORS `, origin);
+      // Dynamically generate allowedOrigins every time
+      const allowedOrigins = [
+        "http://localhost:5173", // Local development
+        "http://localhost:4173", // Local build
+        process.env.FRONTEND_PORT,
+        process.env.FRONTEND_PORT1, // Deployed frontend (main)
+        process.env.FRONTEND_PORT2, // Additional frontend domain
+      ].filter(Boolean); // Removes empty values
+
+      console.log("Dynamic allowedOrigins:", allowedOrigins);
+      console.log("Request going through CORS from:", origin);
+
       if (
         !origin ||
         allowedOrigins.includes(origin) ||
@@ -55,11 +59,3 @@ const port = process.env.PORT || 5001;
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
-
-function getOrDefault(string) {
-  console.log("Using path ->", string);
-  if (string && isEmpty(string)) {
-    return string;
-  }
-  return "";
-}

@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const authMiddleware = (req, res, next) => {
   console.log(`Triggering Auth Middleware`);
-  const token = req.headers.authorization?.split(" ")[1]; // Extract token if it exists
+  const token = req.headers.authorization?.split(" ")[1];
 
   if (!token) {
     return res
@@ -17,7 +17,7 @@ const authMiddleware = (req, res, next) => {
         .status(401)
         .json({ success: false, message: "Invalid token." });
     }
-    req.user = decoded.userId; // Attach decoded user ID to req object
+    req.user = decoded.userId;
     console.log("UserId", req.user);
     next();
   });

@@ -5,7 +5,7 @@ const taskSchema = new mongoose.Schema(
   {
     _id: { type: Schema.Types.ObjectId, auto: true },
     userId: {
-      type: String, // Matching the format in the User model
+      type: String,
       required: true,
     },
     title: {
