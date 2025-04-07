@@ -3,6 +3,7 @@ const Task = require("../models/Task.model");
 // POST/tasks
 const createTask = async (req, res) => {
   try {
+    console.log("Creating task", req.user, req.body);
     const task = new Task({ ...req.body, userId: req.user });
     const newTask = await task.save();
     res.status(201).json({ success: true, data: newTask });
