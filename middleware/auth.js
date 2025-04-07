@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const env = require("../config/envValidator");
 
 const authMiddleware = (req, res, next) => {
-  console.log(`Triggering Auth Middleware`);
   const token = req.headers.authorization?.split(" ")[1];
 
   if (!token) {
@@ -11,36 +11,15 @@ const authMiddleware = (req, res, next) => {
       .json({ success: false, message: "Unauthorized. No token provided." });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decoded) => {
+  jwt.verify(token, env.JWT_SECRET_KEY, (err, decoded) => {
     if (err) {
       return res
         .status(401)
         .json({ success: false, message: "Invalid token." });
     }
     req.user = decoded.userId;
-    console.log("UserId", req.user);
     next();
   });
 };
-
-// const authMiddleware = (req, res, next) => {
-//   const token = req.cookies.token;
-//   if (!token) {
-//     return res
-//       .status(401)
-//       .json({ success: false, message: "Unauthorized. No token provided." });
-//   }
-//   try {
-//     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-//     req.user = decoded.userId;
-//     console.log("Verified Token");
-//     next();
-//   } catch (err) {
-//     console.log("Error", err);
-//     res
-//       .status(400)
-//       .json({ success: false, message: "Invalid token.", data: err });
-//   }
-// };
 
 module.exports = authMiddleware;

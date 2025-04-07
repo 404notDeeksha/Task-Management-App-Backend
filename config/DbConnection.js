@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
+const env = require("./envValidator");
 
 const dbConnection = async () => {
   console.log("🟡 Trying to connect to MongoDB...");
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(env.MONGODB_URL);
     console.log("MongoDB connection successful!");
   } catch (err) {
     console.log("MongoDB connection failed:", err);

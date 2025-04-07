@@ -16,7 +16,6 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
-    "lodash.isempty": "^4.4.0",
     "moment": "^2.30.1",
     "mongodb": "^6.13.0",
     "mongoose": "^8.9.5",

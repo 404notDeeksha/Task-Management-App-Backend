@@ -1,6 +1,7 @@
 const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const env = require("../config/envValidator");
 
 // POST/auth/signup
 const signupUser = async (req, res) => {
@@ -54,14 +55,6 @@ const loginUser = async (req, res) => {
 
     const token = generateToken(user);
 
-    // res.cookie("token", token, {
-    //   httpOnly: true, // Prevents access via JavaScript
-    //   secure: process.env.NODE_ENV === "production", // Ensures it's only sent over HTTPS in production
-    //   sameSite: "none",
-    //   path: "/",
-    //   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days expiration
-    // });
-
     res.status(201).json({
       success: true,
       message: "Login successful",
@@ -81,20 +74,14 @@ const loginUser = async (req, res) => {
 // POST/auth/logout
 const logoutUser = (req, res) => {
   try {
-    // res.clearCookie("token", {
-    //   httpOnly: true,
-    //   secure: process.env.NODE_ENV === "production",
-    //   sameSite: "Strict",
-    // });
-
     res.status(200).json({ success: true, message: "Logged out successfully" });
   } catch (err) {
-    console.log("Cookie cant be deleted", err);
+    console.log("Cant log out", err);
   }
 };
 
 const generateToken = (user) => {
-  return jwt.sign({ userId: user.userId }, process.env.JWT_SECRET_KEY, {
+  return jwt.sign({ userId: user.userId }, env.JWT_SECRET_KEY, {
     expiresIn: "7d",
   });
 };
