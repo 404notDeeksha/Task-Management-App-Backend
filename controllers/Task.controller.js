@@ -14,8 +14,18 @@ const createTask = async (req, res) => {
 
 // GET/tasks
 const getAllTasks = async (req, res) => {
+  console.log("Fetching tasks for user", req.user);
   try {
     const tasks = await Task.find({ userId: req.user });
+
+    if (tasks.length === 0) {
+      return res.json({
+        success: true,
+        data: [],
+        message: "No tasks found for this user.",
+      });
+    }
+
     res.json({ success: true, data: tasks });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
