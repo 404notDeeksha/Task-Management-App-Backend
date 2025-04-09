@@ -4,25 +4,8 @@ const cors = require("cors");
 const router = require("./routes/index.routes");
 const cookieParser = require("cookie-parser");
 const env = require("./config/envValidator");
-console.log("Reaching index.js");
-// const dbConnection = require("./config/dbConnection.js");
+const dbConnection = require("./config/dbConnection.js");
 
-// dbConnection();
-
-const mongoose = require("mongoose");
-// const env = require("./envValidator");
-
-const dbConnection = async () => {
-  console.log("🟡 Trying to connect to MongoDB...");
-  try {
-    await mongoose.connect(env.MONGODB_URL);
-    console.log("MongoDB connection successful!");
-  } catch (err) {
-    console.log("MongoDB connection failed:", err);
-  }
-};
-
-// module.exports = dbConnection;
 dbConnection();
 
 const app = express();
@@ -36,7 +19,6 @@ const isVercelPreview = (origin) =>
 
 const corsOptions = {
   origin: (origin, callback) => {
-    console;
     if (!origin || allowedOrigins.includes(origin) || isVercelPreview(origin)) {
       console.log(
         "CORS policy: Allowing origin:",
