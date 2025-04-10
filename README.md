@@ -8,7 +8,7 @@ Fully integrated with the deployed frontend and built with scalability and clean
 
 ## 🌐 Frontend URL
 
-**Frontend Live:** [https://todo-app-frontend.vercel.app](https://todo-app-frontend.vercel.app)
+**Frontend Live:** [https://plan-live-techwithdeekksha.vercel.app](https://plan-live-techwithdeekksha.vercel.app)
 
 <br />
 
@@ -39,7 +39,7 @@ Fully integrated with the deployed frontend and built with scalability and clean
 
 ### Auth Routes
 
-- `POST /auth/register` – Register a new user  
+- `POST /auth/signup` – Register a new user  
 - `POST /auth/login` – Login and receive token  
 
 ### Task Routes
