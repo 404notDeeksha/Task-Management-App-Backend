@@ -13,7 +13,7 @@ const app = express();
 const allowedOrigins = [env.DEV_FRONTEND_URL, env.DEP_FRONTEND_URL];
 
 const isVercelPreview = (origin) =>
-  /^https:\/\/task-management-app-frontend[a-z0-9-]*\.vercel\.app$/.test(
+  /^https:\/\/plan-live-techwithdeekksha(?:-[a-z0-9-]+)?\.vercel\.app$/.test(
     origin || ""
   );
 
