@@ -25,6 +25,7 @@ const signupUser = async (req, res) => {
     res.status(201).json({
       success: true,
       message: "User registered successfully",
+
       user: {
         userId: user.userId,
         name: user.name,
@@ -41,6 +42,15 @@ const signupUser = async (req, res) => {
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(422).json({
+        success: false,
+        message: "Email and password are required",
+      });
+    }
+
+    
     let user = await User.findOne({ email });
     if (!user)
       return res
