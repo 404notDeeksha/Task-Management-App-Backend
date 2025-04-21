@@ -1,29 +1,10 @@
 const request = require("supertest");
-const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-const User = require("../models/User.model");
-const { MongoMemoryServer } = require("mongodb-memory-server");
-const app = require("../index");
+const User = require("../../models/User.model");
+const setupTestDB = require("../setup/setupTestDB");
+const app = require("../../index");
 
-let mongoServer;
-
-beforeAll(async () => {
-  mongoServer = await MongoMemoryServer.create();
-  const uri = mongoServer.getUri();
-  await mongoose.connect(uri);
-});
-
-afterAll(async () => {
-  await mongoose.disconnect();
-  await mongoServer.stop();
-});
-
-afterEach(async () => {
-  const collections = await mongoose.connection.db.collections();
-  for (let collection of collections) {
-    await collection.deleteMany();
-  }
-});
+setupTestDB();
 
 describe("POST /auth/signup", () => {
   test("should create a new user successfully", async () => {
