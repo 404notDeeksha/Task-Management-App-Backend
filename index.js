@@ -1,10 +1,9 @@
-require("dotenv").config();
 const env = require("./config/envValidator");
 const dbConnection = require("./config/dbConnection");
 const app = require("./app");
 
 if (process.env.NODE_ENV !== "test") {
-  console.log(`🟢 Starting server in ${process.env.NODE_ENV} mode...`);
+  console.log(`🟢 Starting server`);
   dbConnection();
 
   const port = env.PORT;
