@@ -7,6 +7,7 @@ if (process.env.NODE_ENV !== "test") {
   dbConnection();
 
   const port = env.PORT;
+  
   app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
   });

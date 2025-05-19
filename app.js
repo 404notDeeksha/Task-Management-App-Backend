@@ -44,6 +44,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(cookieParser());
+
 app.get("/api/test", (req, res) => {
   console.log("🔵 /api/test route hit!");
   res.json({ message: "API is working!" });
