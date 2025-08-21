@@ -14,6 +14,7 @@ const isVercelPreview = (origin) =>
 
 const corsOptions = {
   origin: (origin, callback) => {
+    
     if (!origin) {
       console.log(
         "CORS policy: No origin provided (likely a non-browser request)"
@@ -21,6 +22,7 @@ const corsOptions = {
     } else {
       console.log("CORS policy: Origin provided:", origin);
     }
+
     if (!origin || allowedOrigins.includes(origin) || isVercelPreview(origin)) {
       console.log(
         "CORS policy: Allowing origin:",

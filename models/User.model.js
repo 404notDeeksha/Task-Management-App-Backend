@@ -23,6 +23,7 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
+/* Acts as a safeguard hook to ensure userId is set before saving */
 UserSchema.pre("save", function (next) {
   if (!this.userId) {
     this.userId = uuidv4();

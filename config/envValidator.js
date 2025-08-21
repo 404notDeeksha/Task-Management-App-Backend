@@ -10,6 +10,7 @@ const requiredEnvVars = [
   "MONGODB_URL",
 ];
 
+/* All Variables mentioned in env must have values */
 function validateEnv() {
   const missingVars = requiredEnvVars.filter((key) => !process.env[key]);
 

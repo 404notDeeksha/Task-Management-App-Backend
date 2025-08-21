@@ -12,6 +12,7 @@ describe("dbConnection", () => {
 
   it("skips connection in test environment", async () => {
     process.env.NODE_ENV = "test";
+
     const logSpy = jest.spyOn(console, "log").mockImplementation(() => {});
     const mongoose = require("mongoose");
     const connectSpy = jest.spyOn(mongoose, "connect");
@@ -29,6 +30,7 @@ describe("dbConnection", () => {
     process.env.NODE_ENV = "development";
 
     const mongoose = require("mongoose");
+    
     const connectSpy = jest.spyOn(mongoose, "connect").mockResolvedValueOnce();
     const logSpy = jest.spyOn(console, "log").mockImplementation(() => {});
 
