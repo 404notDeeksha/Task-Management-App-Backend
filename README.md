@@ -65,6 +65,9 @@ MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 PORT=5001
 
-# 4. Start the server:
+# 4. Start the server (production mode):
 npm start
+
+# 5. Start the server in development mode (with auto-reload):
+npm run dev
 ```
