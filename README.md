@@ -1,4 +1,4 @@
-# 🛠️ todo-app-backend
+# Task-Management-App-Backend
 
 This is the **backend server** for the full-stack Task Management App. It handles user registration, login, and secure task management via **JWT-based authentication** using **Node.js, Express, and MongoDB**.
 
@@ -51,11 +51,3 @@ Fully integrated with the deployed frontend and built with scalability and clean
 - `GET /tasks?sort=priority|date|progress` – Get sorted tasks
 
 <br />
-
-## 🧪 Getting Started Locally
-
-### Clone the repo:
-
-```bash
-git clone https://github.com/Deek1995/todo-app-backend.git
-cd todo-app-backend
