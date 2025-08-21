@@ -7,9 +7,9 @@ Fully integrated with the deployed frontend and built with scalability and clean
 <br />
 
 ## 🌐 Links
-**Frontend:** [https://plan-live-techwithdeekksha.vercel.app](https://plan-live-techwithdeekksha.vercel.app)
-**Backend API:** [https://plan-dep-techwithdeekksha.vercel.app](https://plan-dep-techwithdeekksha.vercel.app)
-**Frontend Code:** [Task-Management-App](https://github.com/404notDeeksha/Task-Management-App)
+Frontend: [https://plan-live-techwithdeekksha.vercel.app](https://plan-live-techwithdeekksha.vercel.app)
+Backend API: [https://plan-dep-techwithdeekksha.vercel.app](https://plan-dep-techwithdeekksha.vercel.app)
+Frontend Code: [Task-Management-App](https://github.com/404notDeeksha/Task-Management-App)
 
 <br />
 
