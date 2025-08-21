@@ -1,7 +1,7 @@
 const request = require("supertest");
 const mongoose = require("mongoose");
 const app = require("../../app");
-const setupTestDB = require("../setup/setupTestDB");
+const setupTestDB = require("../utils/setupTestDB");
 const { createTask, createManyTasks } = require("../utils/task-utils");
 const Task = require("../../models/Task.model");
 

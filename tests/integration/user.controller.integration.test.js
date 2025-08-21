@@ -2,7 +2,7 @@ process.env.NODE_ENV = "test";
 const request = require("supertest");
 const bcrypt = require("bcryptjs");
 const User = require("../../models/User.model");
-const setupTestDB = require("../setup/setupTestDB");
+const setupTestDB = require("../utils/setupTestDB");
 const app = require("../../app");
 
 setupTestDB();

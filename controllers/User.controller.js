@@ -6,8 +6,10 @@ const env = require("../config/envValidator");
 // POST/auth/signup
 const signupUser = async (req, res) => {
   try {
+    /* Get user data from req body */
     const { name, email, password } = req.body;
 
+    /* Find if user email already exists */
     let user = await User.findOne({ email });
     if (user)
       return res
@@ -15,17 +17,19 @@ const signupUser = async (req, res) => {
         .json({ success: false, message: "User already exists" });
 
     const salt = await bcrypt.genSalt(10);
+
+    /* Hashing password to store it */
     const hashedPassword = await bcrypt.hash(password, salt);
 
     user = new User({ name, email, password: hashedPassword });
     await user.save();
 
+    /* Generating JWT token for User */
     const token = generateToken(user);
 
     res.status(201).json({
       success: true,
       message: "User registered successfully",
-
       user: {
         userId: user.userId,
         name: user.name,
@@ -41,6 +45,7 @@ const signupUser = async (req, res) => {
 // POST/auth/login
 const loginUser = async (req, res) => {
   try {
+    /* Get user data from req body */
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -50,19 +55,21 @@ const loginUser = async (req, res) => {
       });
     }
 
-    
+    /* Find if user exists */
     let user = await User.findOne({ email });
     if (!user)
       return res
         .status(400)
         .json({ success: false, message: "User not exists" });
 
+    /* Compare user stored password data with req body password data */
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch)
       return res
         .status(400)
         .json({ success: false, error: "Invalid credentials" });
 
+    /* Generating JWT token for User */
     const token = generateToken(user);
 
     res.status(201).json({
@@ -86,10 +93,11 @@ const logoutUser = (req, res) => {
   try {
     res.status(200).json({ success: true, message: "Logged out successfully" });
   } catch (err) {
-    console.log("Cant log out", err);
+    console.log("Cannot log out", err);
   }
 };
 
+/* Function to Calculate JWT token */
 const generateToken = (user) => {
   return jwt.sign({ userId: user.userId }, env.JWT_SECRET_KEY, {
     expiresIn: "7d",

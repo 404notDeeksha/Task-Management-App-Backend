@@ -1,4 +1,4 @@
-const setupTestDB = require("../setup/setupTestDB");
+const setupTestDB = require("../utils/setupTestDB");
 const User = require("../../models/User.model");
 const { createTestUser } = require("../utils/user-utils");
 
