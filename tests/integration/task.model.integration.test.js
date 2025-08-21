@@ -1,7 +1,7 @@
 jest.setTimeout(20000);
-const Task = require("../../models/task.model.js");
-const { createTask } = require("../utils/task-utils");
-const setupTestDb = require("../setup/setupTestDB");
+const Task = require("../models/task.model.js");
+const { createTask } = require("../utils/task-utils.js");
+const setupTestDb = require("../utils/setupTestDB.js");
 
 setupTestDb();
 
