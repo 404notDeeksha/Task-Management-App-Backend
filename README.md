@@ -6,18 +6,18 @@ Fully integrated with the deployed frontend and built with scalability and clean
 
 <br />
 
-## 🌐 Frontend URL
-
-**Frontend Live:** [https://plan-live-techwithdeekksha.vercel.app](https://plan-live-techwithdeekksha.vercel.app)
+## 🌐 Links
+**Frontend:** [https://plan-live-techwithdeekksha.vercel.app](https://plan-live-techwithdeekksha.vercel.app)
+**Backend API:** [https://plan-dep-techwithdeekksha.vercel.app](https://plan-dep-techwithdeekksha.vercel.app)
+**Frontend Code:** [Task-Management-App](https://github.com/404notDeeksha/Task-Management-App)
 
 <br />
 
 ## ⚙️ Tech Stack
-
 - 🚀 Node.js
 - 🔧 Express.js
 - 🔐 JWT Authentication
-- 📦 MongoDB + Mongoose
+- 📦 MongoDB Atlas (Cloud Database)
 - 🌿 dotenv for environment configs
 - 🧩 CORS for frontend integration
 - ☁️ Deployed on Vercel
@@ -25,7 +25,6 @@ Fully integrated with the deployed frontend and built with scalability and clean
 <br />
 
 ## ✨ Features
-
 - 🔐 Secure JWT-based Authentication
 - 🧑‍💼 User Registration & Login
 - ✅ Full CRUD for Tasks
@@ -48,6 +47,24 @@ Fully integrated with the deployed frontend and built with scalability and clean
 - `POST /tasks` – Create a new task  
 - `PUT /tasks/:id` – Update a specific task  
 - `DELETE /tasks/:id` – Delete a specific task  
-- `GET /tasks?sort=priority|date|progress` – Get sorted tasks
 
 <br />
+
+## 🛠️ Installation & Setup
+
+```bash
+# 1. Clone the repository:
+git clone https://github.com/404notDeeksha/Task-Management-App-Backend
+cd Task-Management-App-Backend
+
+# 2. Install dependencies:
+npm install
+
+# 3. Create .env file with:
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+PORT=5001
+
+# 4. Start the server:
+npm start
+```

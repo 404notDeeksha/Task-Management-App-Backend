@@ -14,7 +14,6 @@ const createTask = async (req, res) => {
 
 // GET/tasks
 const getAllTasks = async (req, res) => {
-  console.log("Fetching tasks for user", req.user);
   try {
     const tasks = await Task.find({ userId: req.user });
 
