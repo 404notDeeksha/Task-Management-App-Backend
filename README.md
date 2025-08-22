@@ -1,4 +1,5 @@
 # Task-Management-App-Backend
+[![MIT License](https://img.shields.io/github/license/404notDeeksha/Task-Management-App-Backend?style=flat-square)](https://github.com/404notDeeksha/Task-Management-App-Backend/blob/main/LICENSE)
 
 **Backend server** for full-stack Task Management App.
 
@@ -12,7 +13,6 @@ Backend: [https://plan-dep-techwithdeekksha.vercel.app](https://plan-dep-techwit
 ## 📂 Frontend Repository
 [![Task-Management-App](https://img.shields.io/badge/Task--Management--App-808080?style=for-the-badge&logo=github&logoColor=white)](https://github.com/404notDeeksha/Task-Management-App)
 
-
 <br />
 
 ## ⚙️ Tech Stack
@@ -21,7 +21,6 @@ Backend: [https://plan-dep-techwithdeekksha.vercel.app](https://plan-dep-techwit
 [![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongodb.com/)
 [![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)](https://jwt.io/)
 [![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
-
 
 <br />
 
@@ -78,5 +77,5 @@ npm run dev
 
 - Role-based access control (Admin/User permissions)
 - Continuous Integration & Deployment (CI/CD) with automated testing  
-  ***(Work in progress to ensure reliable builds and deployments)***
+  _(Work in progress to ensure reliable builds and deployments)_
  
