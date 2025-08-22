@@ -1,8 +1,6 @@
 # Task-Management-App-Backend
 
-This is the **backend server** for the full-stack Task Management App. It handles user registration, login, and secure task management via **JWT-based authentication** using **Node.js, Express, and MongoDB**.
-
-Fully integrated with the deployed frontend and built with scalability and clean code practices in mind.
+**Backend server** for full-stack Task Management App.
 
 <br />
 
@@ -17,13 +15,10 @@ Frontend Code: [Task-Management-App](https://github.com/404notDeeksha/Task-Manag
 <br />
 
 ## ⚙️ Tech Stack
-- 🚀 Node.js
-- 🔧 Express.js
-- 🔐 JWT Authentication
-- 📦 MongoDB Atlas (Cloud Database)
-- 🌿 dotenv for environment configs
-- 🧩 CORS for frontend integration
-- ☁️ Deployed on Vercel
+[![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node-dot-js&logoColor=white)](https://nodejs.org/)
+[![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongodb.com/)
+[![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)](https://jwt.io/)
 [![Vercel](https://img.shields.io/badge/Vercel-based)]
 
 <br />
