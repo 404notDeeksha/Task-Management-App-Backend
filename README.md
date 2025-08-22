@@ -10,7 +10,7 @@ Frontend: [https://plan-live-techwithdeekksha.vercel.app](https://plan-live-tech
 Backend: [https://plan-dep-techwithdeekksha.vercel.app](https://plan-dep-techwithdeekksha.vercel.app)
 
 ## 📂 Frontend Repository
-[![Task-Management-App](https://img.shields.io/badge/Task--Management--App-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/404notDeeksha/Task-Management-App)
+[![Task-Management-App](https://img.shields.io/badge/Task--Management--App-808080?style=for-the-badge&logo=github&logoColor=white)](https://github.com/404notDeeksha/Task-Management-App)
 
 
 <br />
