@@ -20,7 +20,6 @@ describe("User Model", () => {
       password: "secret123",
     };
 
-    const savedUser = await createTestUser(userData);
     const foundUser = await User.findOne({ email: userData.email });
 
     expect(foundUser).toBeTruthy();

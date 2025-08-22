@@ -13,7 +13,7 @@ describe("Environment Validator", () => {
 
   const mockEnv = (envOverrides = {}) => {
     for (const key of REQUIRED_VARS) {
-      if (envOverrides.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(envOverrides, key)) {
         if (envOverrides[key] === undefined) {
           delete process.env[key]; // explicitly remove it
         } else {

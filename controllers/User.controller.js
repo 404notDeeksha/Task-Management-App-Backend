@@ -37,8 +37,8 @@ const signupUser = async (req, res) => {
         token,
       },
     });
-  } catch (error) {
-    res.status(500).json({ success: false, message: "Server Error" });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Server Error", err });
   }
 };
 
@@ -83,8 +83,7 @@ const loginUser = async (req, res) => {
       },
     });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, message: "Server Error" });
+    res.status(500).json({ success: false, message: "Server Error", error });
   }
 };
 
