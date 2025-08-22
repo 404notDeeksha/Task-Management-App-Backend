@@ -1,6 +1,6 @@
 {
   "name": "task-management-app-backend",
-  "description": "",
+  "description": "a backend service providing RESTful APIs for user authentication & task management",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
