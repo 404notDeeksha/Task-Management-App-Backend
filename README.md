@@ -10,7 +10,7 @@ Frontend: [https://plan-live-techwithdeekksha.vercel.app](https://plan-live-tech
 Backend: [https://plan-dep-techwithdeekksha.vercel.app](https://plan-dep-techwithdeekksha.vercel.app)
 
 ## 📂 Related Repositories
-Frontend Code: [Task-Management-App](https://github.com/404notDeeksha/Task-Management-App)
+Frontend Code: [![Task-Management-App](https://img.shields.io/badge/Task--Management--App-GitHub-181717?style=for-the-badge&logo=github)](https://github.com/404notDeeksha/Task-Management-App)
 
 <br />
 
@@ -28,7 +28,6 @@ Frontend Code: [Task-Management-App](https://github.com/404notDeeksha/Task-Manag
 - 🔐 Secure JWT-based Authentication
 - 🧑‍💼 User Registration & Login
 - ✅ Full CRUD for Tasks
-- 📅 Sort Tasks by Date, Priority, and Progress
 - ⚙️ RESTful API with clean, modular structure
 - 🧼 Follows best backend practices
 
@@ -78,5 +77,5 @@ npm run dev
 
 - Role-based access control (Admin/User permissions)
 - Continuous Integration & Deployment (CI/CD) with automated testing  
-  → Work in progress to ensure reliable builds and deployments
+  ***(Work in progress to ensure reliable builds and deployments)***
  
