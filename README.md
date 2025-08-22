@@ -24,6 +24,7 @@ Frontend Code: [Task-Management-App](https://github.com/404notDeeksha/Task-Manag
 - 🌿 dotenv for environment configs
 - 🧩 CORS for frontend integration
 - ☁️ Deployed on Vercel
+[![Vercel](https://img.shields.io/badge/Vercel-based)]
 
 <br />
 
@@ -74,3 +75,12 @@ npm start
 # 5. Start the server in development mode (with auto-reload):
 npm run dev
 ```
+
+<br/>
+
+## 🚀 Upcoming Features
+
+- Role-based access control (Admin/User permissions)
+- Continuous Integration & Deployment (CI/CD) with automated testing  
+  → Work in progress to ensure reliable builds and deployments
+ 
