@@ -6,7 +6,8 @@ const dbConnection = async () => {
     console.log("⚡ Skipping DB connection in test environment");
     return;
   }
-  console.log("🟡 Trying to connect to MongoDB...in mode ");
+  console.log(
+    "🟡 Trying to connect to MongoDB...in mode " );
   try {
     await mongoose.connect(env.MONGODB_URL);
     console.log("MongoDB connection successful!");

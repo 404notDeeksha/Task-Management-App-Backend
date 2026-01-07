@@ -3,9 +3,7 @@ const dbConnection = require("./config/dbConnection");
 const app = require("./app");
 
 if (process.env.NODE_ENV !== "test") {
-  // if (process.env.NODE_ENV === "development") {
-  console.log(`🟢 Starting server`, process.env.NODE_ENV);
-  // }
+  console.log(`🟢 Starting server`);
   dbConnection();
 
   const port = env.PORT;
