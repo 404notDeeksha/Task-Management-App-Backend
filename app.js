@@ -48,14 +48,14 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(cookieParser());
 
-app.use(notFoundHandler);
-app.use(errorHandler);
-
 app.get("/api/test", (req, res) => {
   console.log("🔵 /api/test route hit!");
   res.json({ message: "API is working!" });
 });
 
 app.use("/", router);
+
+app.use(notFoundHandler);
+app.use(errorHandler);
 
 module.exports = app;
